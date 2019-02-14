@@ -56,5 +56,5 @@ def name_is_updated(context, customer_id, surname):
 
     assert response.is_json
     body = response.get_json()
-    assert body['surname'] == surname, f"'{body['surname']}' not equals '{surname}'"
-
+    assert body['surname'] == surname, \
+        f"'{body['surname']}' not equals '{surname}'"
