@@ -18,3 +18,7 @@ class MockCustomerRepository:
             raise CustomerNotFound()
 
         return self.customers[id]
+
+    def update_customer_surname(self, id, new_surname):
+        cust_to_update = self.customers[id]
+        cust_to_update.surname = new_surname

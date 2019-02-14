@@ -37,3 +37,23 @@ def assert_customer(context, expected_name):
 @then("I should get a not found response")
 def assert_not_found_response(context):
     assert context.response.status_code == 404, context.response.status_code
+
+
+@when(u'customer "{customer_id}" surname is updated to "{new_surname}"')
+def assert_surname_updated(context, customer_id, new_surname):
+    response = context.web_client.post(
+        '/customers/update',
+        json={'customer_id': customer_id, 'surname': new_surname})
+
+    assert response.status_code == 200, response.status_code
+
+
+@then(u'customer "{customer_id}" surname is changed to "{surname}"')
+def name_is_updated(context, customer_id, surname):
+    response = context.web_client.get(f'/customers/{customer_id}')
+
+    assert response.status_code == 200, response.status_code
+
+    assert response.is_json
+    body = response.get_json()
+    assert body['surname'] == surname, f"'{body['surname']}' not equals '{surname}'"

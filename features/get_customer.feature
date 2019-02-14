@@ -10,3 +10,8 @@ Feature: Get the customer based on id
     Given there is no customer with ID "99999"
     When I fetch customer "99999"
     Then I should get a not found response
+
+  Scenario: Update Customer
+    Given customer "Nicole Forsgren" with ID "12345" exists
+    When customer "12345" surname is updated to "Brown"
+    Then customer "12345" surname is changed to "Brown"
