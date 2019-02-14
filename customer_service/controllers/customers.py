@@ -55,7 +55,8 @@ def update_customer():
     customer_repository = current_app.customer_repository
 
     commands.update_customer(
-        customer_repository=customer_repository, customer_id=int(body['customer_id']), surname=body['surname'])
+        customer_repository=customer_repository,
+        customer_id=int(body['customer_id']), surname=body['surname'])
 
     return jsonify(), HTTPStatus.OK
 
